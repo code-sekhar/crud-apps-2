@@ -17,4 +17,5 @@ Route::middleware('auth:sanctum')->group(function () {
    Route::delete('/blogpost/{id}',[StudentController::class,'destroy']);
    Route::put('/blogpost/{id}',[StudentController::class,'updatepost']);
    Route::get('/blogpost/{id}',[StudentController::class,'singlepost']);
+  // Route::get('/allpost',[AuthController::class,'allpost']);
 });

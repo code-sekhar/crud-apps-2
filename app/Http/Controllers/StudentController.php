@@ -9,10 +9,14 @@ use Illuminate\Support\Facades\DB;
 class StudentController extends Controller
 {
     public function index(){
+
         $data = DB::table('schools')
                 ->join('users', 'schools.emailId', '=', 'users.email')
                 ->select('schools.*', 'users.name','users.email','users.phone')
-                ->get();
+                ->simplePaginate(
+                $perPage = 2,
+                $pageName = 'items'
+                );
         return response()->json([
             'message' => 'success',
             'data' => $data,
@@ -138,4 +142,16 @@ class StudentController extends Controller
            ],400);
        }
     }
+    //pagination api
+//    public function allpost(){
+//        $result = DB::table('schools')->simplePaginate(
+//            $perPage = 2,
+//            $pageName = 'items'
+//        );
+//        return response()->json([
+//            'message' => 'success',
+//            'data' => $result,
+//            'status' => 200,
+//        ],200);
+//    }
 }
